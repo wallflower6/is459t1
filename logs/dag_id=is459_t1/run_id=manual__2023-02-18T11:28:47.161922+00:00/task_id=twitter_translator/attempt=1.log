@@ -1,0 +1,42 @@
+[2023-02-18T11:29:34.747+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: is459_t1.twitter_translator manual__2023-02-18T11:28:47.161922+00:00 [queued]>
+[2023-02-18T11:29:34.772+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: is459_t1.twitter_translator manual__2023-02-18T11:28:47.161922+00:00 [queued]>
+[2023-02-18T11:29:34.773+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-18T11:29:34.773+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 1
+[2023-02-18T11:29:34.774+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-18T11:29:34.809+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): twitter_translator> on 2023-02-18 11:28:47.161922+00:00
+[2023-02-18T11:29:34.821+0000] {standard_task_runner.py:55} INFO - Started process 250 to run task
+[2023-02-18T11:29:34.825+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'is459_t1', 'twitter_translator', 'manual__2023-02-18T11:28:47.161922+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/is459t1_dag.py', '--cfg-path', '/tmp/tmp0ks5_ke0']
+[2023-02-18T11:29:34.826+0000] {standard_task_runner.py:83} INFO - Job 19: Subtask twitter_translator
+[2023-02-18T11:29:34.942+0000] {task_command.py:388} INFO - Running <TaskInstance: is459_t1.twitter_translator manual__2023-02-18T11:28:47.161922+00:00 [running]> on host 9c652de7ba26
+[2023-02-18T11:29:35.066+0000] {taskinstance.py:1507} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=lindy
+AIRFLOW_CTX_DAG_ID=is459_t1
+AIRFLOW_CTX_TASK_ID=twitter_translator
+AIRFLOW_CTX_EXECUTION_DATE=2023-02-18T11:28:47.161922+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-02-18T11:28:47.161922+00:00
+[2023-02-18T11:29:35.070+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/twitter_translator.py", line 9, in run_translator
+    df = pd.read_json(CUR_DIR + 'tweets-json.json')
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/util/_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/util/_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/json/_json.py", line 733, in read_json
+    json_reader = JsonReader(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/json/_json.py", line 818, in __init__
+    data = self._get_data_from_filepath(filepath_or_buffer)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/json/_json.py", line 874, in _get_data_from_filepath
+    raise FileNotFoundError(f"File {filepath_or_buffer} does not exist")
+FileNotFoundError: File /opt/***/dagstweets-json.json does not exist
+[2023-02-18T11:29:35.092+0000] {taskinstance.py:1318} INFO - Marking task as FAILED. dag_id=is459_t1, task_id=twitter_translator, execution_date=20230218T112847, start_date=20230218T112934, end_date=20230218T112935
+[2023-02-18T11:29:35.116+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 19 for task twitter_translator (File /opt/***/dagstweets-json.json does not exist; 250)
+[2023-02-18T11:29:35.161+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-02-18T11:29:35.193+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
